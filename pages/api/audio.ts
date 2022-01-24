@@ -6,7 +6,7 @@ const audioHandler = async (req: NextApiRequest, res: NextApiResponse<ytdl.video
   const { url } = req.query
   if (!url) return res.status(400).send('No "url" provided')
   const audio = await AudioService.execute(url as string)
-  return res.status(200).json(audio)
+  return res.status(200).json({ ...audio, userData: req.socket.address() } as ytdl.videoFormat)
 }
 
 export default audioHandler
