@@ -73,7 +73,7 @@ const Search: NextPage<IProps> = (props) => {
                       objectPosition='center'
 
                       onClick={() => {
-                        getAudio(videoInfo.videoId).then((audio) => {
+                        getAudio(videoInfo.url).then((audio) => {
                           player.src = audio.url
                           player.play()
                             .catch(() => {
