@@ -78,6 +78,8 @@ const Search: NextPage<IProps> = (props) => {
                           player.play()
                             .catch(() => {
                               console.warn('Cant play from Direct Source! Falling Back to Relay.')
+                              player.src = `/api/relay?url=${videoInfo.url}`
+                              player.play()
                             })
                         })
                       }}
