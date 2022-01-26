@@ -1,11 +1,11 @@
-import React, { createContext, useEffect } from 'react'
-import { Player } from '../services/client/player'
+import React, { createContext, useEffect, useCallback } from 'react'
 
 type PlayerContextProps = {
-  player: Player
+  player: HTMLAudioElement
   currentTime: number
   isPlaying: boolean
   duration: number
+  play: () => Promise<void>
 }
 
 export const playerContext = createContext({} as PlayerContextProps)
@@ -15,43 +15,47 @@ type Props = {
 }
 
 export const PlayerContextProvider: React.FC<Props> = (props) => {
-  const [player, setPlayer] = React.useState<Player>({} as Player)
+  const [player, setPlayer] = React.useState<HTMLAudioElement>({} as HTMLAudioElement)
   const [currentTime, setCurrentTime] = React.useState(0)
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [duration, setDuration] = React.useState(0)
 
   useEffect(() => {
-    if (!player.ready) {
-      setPlayer(new Player())
+    if (!(player instanceof HTMLAudioElement)) {
+      setPlayer(new Audio())
     } else {
       const currentTimeCallback = () => {
-        setCurrentTime(player.core.currentTime)
+        setCurrentTime(player.currentTime)
       }
       const isPlayingCallback = () => {
-        setIsPlaying(!player.core.paused && !player.core.ended)
+        setIsPlaying(!player.paused && !player.ended)
       }
       const durationCallback = () => {
-        setDuration(player.core.duration)
+        setDuration(player.duration)
       }
 
-      player.core.addEventListener('timeupdate', currentTimeCallback)
+      player.addEventListener('timeupdate', currentTimeCallback)
 
-      player.core.addEventListener('playing', isPlayingCallback)
-      player.core.addEventListener('pause', isPlayingCallback)
-      player.core.addEventListener('ended', isPlayingCallback)
+      player.addEventListener('playing', isPlayingCallback)
+      player.addEventListener('pause', isPlayingCallback)
+      player.addEventListener('ended', isPlayingCallback)
 
-      player.core.addEventListener('canplay', durationCallback)
+      player.addEventListener('canplay', durationCallback)
 
       return () => {
-        player.core.removeEventListener('timeupdate', currentTimeCallback)
+        player.removeEventListener('timeupdate', currentTimeCallback)
 
-        player.core.removeEventListener('playing', isPlayingCallback)
-        player.core.removeEventListener('pause', isPlayingCallback)
-        player.core.removeEventListener('ended', isPlayingCallback)
+        player.removeEventListener('playing', isPlayingCallback)
+        player.removeEventListener('pause', isPlayingCallback)
+        player.removeEventListener('ended', isPlayingCallback)
 
-        player.core.removeEventListener('canplay', durationCallback)
+        player.removeEventListener('canplay', durationCallback)
       }
     }
+  }, [player])
+
+  const play = useCallback(() => {
+    return player.play()
   }, [player])
 
   return (
@@ -61,6 +65,7 @@ export const PlayerContextProvider: React.FC<Props> = (props) => {
         currentTime,
         isPlaying,
         duration,
+        play
       }}
     >
       {props.children}
