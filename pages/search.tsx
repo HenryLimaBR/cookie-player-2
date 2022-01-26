@@ -9,6 +9,7 @@ import { PageWrapper } from '../styles/Pages'
 import { Loader } from '../components/Loader'
 import { getAudio, getSearch } from '../services/client/api'
 import { playerContext } from '../contexts/playerContext'
+import ytdl from 'ytdl-core'
 
 interface IProps {
   children?: React.ReactNode
@@ -74,7 +75,13 @@ const Search: NextPage<IProps> = (props) => {
 
                       onClick={() => {
                         getAudio(videoInfo.url).then((audio) => {
-                          player.src = audio.url
+                          
+                          try {
+                            player.src = audio.url
+                          } catch(err) {
+                            console.warn('Cors Error!')
+                          }
+
                           player.play()
                         })
                       }}
