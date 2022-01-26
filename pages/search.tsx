@@ -72,11 +72,15 @@ const Search: NextPage<IProps> = (props) => {
                       objectFit='cover'
                       objectPosition='center'
 
-                      onClick={() => {
-                        getAudio(videoInfo.url).then((audio) => {
-                          player.src = audio.url
-                          player.play()
-                        })
+                      onClick={async () => {
+                        const audio = await getAudio(videoInfo.url)
+                        player.src = audio.url
+                        player.play()
+                          .catch(() => {
+                            console.warn('Failed to load from source! Using relay.')
+                            player.src = `/api/relay?url=${videoInfo.url}`
+                            player.play()
+                          })
                       }}
                     />
                   </li>
