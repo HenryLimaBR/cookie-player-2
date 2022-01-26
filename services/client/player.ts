@@ -15,7 +15,7 @@ export class Player {
     this.core.play()
       .catch(() => {
         console.warn('Failed to play from source! Fallback to Relay.')
-        this.src = `/api/relay/${url}`
+        this.src = `/api/relay?url=${url}`
         this.core.play()
       })
   }
