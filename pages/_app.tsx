@@ -6,6 +6,7 @@ import '../styles/global.scss'
 
 import { PlayerContextProvider } from '../contexts/playerContext'
 import { MainLayout } from '../layouts/MainLayout'
+import { MediaContextProvider } from '../contexts/mediaContext'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -15,9 +16,11 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       </Head>
 
       <PlayerContextProvider>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
+        <MediaContextProvider>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </MediaContextProvider>
       </PlayerContextProvider>
     </>
   )
