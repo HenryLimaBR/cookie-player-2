@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 import { PageWrapper } from '../styles/Pages'
 import { Loader } from '../components/Loader'
-import { getAudio, getSearch } from '../services/client/api'
+import { getSearch } from '../services/client/api'
 import { playerContext } from '../contexts/playerContext'
 
 interface IProps {
@@ -73,14 +73,7 @@ const Search: NextPage<IProps> = (props) => {
                       objectPosition='center'
 
                       onClick={async () => {
-                        const audio = await getAudio(videoInfo.url)
-                        player.src = audio.url
-                        player.play()
-                          .catch(() => {
-                            console.warn('Failed to load from source! Using relay.')
-                            player.src = `/api/relay?url=${videoInfo.url}`
-                            player.play()
-                          })
+                        player.play(videoInfo.url)
                       }}
                     />
                   </li>
