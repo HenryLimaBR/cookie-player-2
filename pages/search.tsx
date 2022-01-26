@@ -74,15 +74,8 @@ const Search: NextPage<IProps> = (props) => {
                       objectPosition='center'
 
                       onClick={() => {
-                        getAudio(videoInfo.url).then((audio) => {
-                          player.src = audio.url
-                          try {
-                            player.play()
-                          } catch(err) {
-                            console.warn('Error Playing From Source. Using Relay')
-                            player.src = `/api/relay?url=${encodeURIComponent(audio.url)}`
-                          }
-                        })
+                        player.src = `/api/relay?url=${videoInfo.url}`
+                        player.play()
                       }}
                     />
                   </li>
