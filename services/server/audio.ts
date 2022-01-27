@@ -8,7 +8,7 @@ export class AudioFormatService {
 }
 
 export class AudioStreamService {
-  public static async execute(url: string) {
+  public static execute(url: string) {
     const stream = ytdl(url, { filter: 'audioonly', quality: 'highestaudio' })
     return stream
   }
