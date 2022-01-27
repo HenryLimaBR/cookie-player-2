@@ -10,11 +10,11 @@ import { Loader } from '../components/Loader'
 import { getAudio, getSearch } from '../services/client/api'
 import { playerContext } from '../contexts/playerContext'
 
-interface IProps {
+type SearchPageProps = {
   children?: React.ReactNode
 }
 
-const Search: NextPage<IProps> = (props) => {
+const Search: NextPage<SearchPageProps> = (props) => {
   const router = useRouter()
   const { q } = router.query
   const { player } = React.useContext(playerContext)
@@ -74,7 +74,7 @@ const Search: NextPage<IProps> = (props) => {
 
                       onClick={() => {
                         getAudio(videoInfo.url).then((audio) => {
-                          player.src = audio.url
+                          player.src = audio.url + 'aa'
                           player.play()
                             .catch(() => {
                               console.warn('Cant play from Direct Source! Falling Back to Relay.')

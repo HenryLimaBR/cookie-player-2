@@ -3,11 +3,11 @@ import { NextPage } from 'next'
 
 import { PageWrapper } from '../styles/Pages'
 
-interface IProps {
+type Custom404PageProps = {
   children?: React.ReactNode
 }
 
-const Custom404: NextPage = (props: IProps) => {
+const Custom404: NextPage<Custom404PageProps> = (props) => {
   return (
     <PageWrapper>
       <h1>404 - Page Not Found!</h1>

@@ -5,11 +5,11 @@ import { MdHome, MdSearch } from 'react-icons/md'
 import { NavbarWrapper, NavDiv } from './styles'
 import { theme } from '../../themes/default'
 
-interface IProps {
+type NavbarProps = {
   children?: React.ReactNode
 }
 
-export const Navbar: React.FC<IProps> = (props) => {
+export const Navbar: React.FC<NavbarProps> = (props) => {
   return (
     <NavbarWrapper>
       <Link href='/' passHref>
