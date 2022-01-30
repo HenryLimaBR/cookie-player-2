@@ -11,4 +11,6 @@ export const PageWrapper = styled.div`
   flex-direction: column;
 
   color: ${theme.colors.fg5};
+
+  overflow: auto;
 `
