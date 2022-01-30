@@ -15,10 +15,6 @@ export const LayoutWrapper = styled.div`
 `
 
 export const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   grid-area: Main;
   overflow: hidden;
 `
