@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { theme } from '../../themes/default'
 
 export const SearchItemWrapper = styled.li`
-  width: 80%;
+  width: calc(100% - 16px);
   
   display: grid;
   grid-template-columns: 32px 1fr;
@@ -11,7 +11,7 @@ export const SearchItemWrapper = styled.li`
   
   border-radius: 6px;
 
-  background-color: ${theme.colors.bg4};
+  background-color: ${theme.colors.bg3};
 
   overflow: hidden;
 
@@ -22,7 +22,7 @@ export const SearchItemWrapper = styled.li`
   
     overflow: hidden;
 
-    .next-image {
+    img {
       border-radius: 3px;
     }
   }
@@ -31,5 +31,10 @@ export const SearchItemWrapper = styled.li`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    a {
+      margin-left: 8px;
+      font-weight: bold;
+    }
   }
 `
