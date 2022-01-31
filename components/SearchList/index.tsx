@@ -1,5 +1,5 @@
 import React from 'react'
-import type { VideoSearchResult } from 'yt-search'
+import type { SearchAudioData } from '../../@types/media'
 
 import { SearchListWrapper, SearchListComponent } from './styles'
 
@@ -7,7 +7,7 @@ import { SearchItem } from '../SearchItem'
 
 type Props = {
   children?: React.ReactNode
-  results: VideoSearchResult[]
+  results: SearchAudioData[]
 }
 
 export const SearchList: React.FC<Props> = (props) => {
@@ -15,8 +15,8 @@ export const SearchList: React.FC<Props> = (props) => {
     <SearchListWrapper>
       <SearchListComponent>
         {
-          props.results.map((video) => (
-            <SearchItem video={video} key={video.videoId} />
+          props.results.map((data) => (
+            <SearchItem data={data} key={data.id} />
           ))
         }
       </SearchListComponent>

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import Image from 'next/image'
-import type { VideoSearchResult } from 'yt-search'
+import type { SearchAudioData } from '../../@types/media'
+
 import { playerContext } from '../../contexts/playerContext'
 import { getAudio } from '../../services/client/api'
 
@@ -8,14 +9,14 @@ import { SearchItemWrapper } from './styles'
 
 type Props = {
   children?: React.ReactNode
-  video: VideoSearchResult
+  data: SearchAudioData
 }
 
-export const SearchItem: React.FC<Props> = ({ video }) => {
+export const SearchItem: React.FC<Props> = ({ data }) => {
   const { player, play } = useContext(playerContext)
 
   const handleClick = async () => {
-    const audio = await getAudio(video.url)
+    const audio = await getAudio(data.url)
     try {
       player.src = audio.url
       play()
@@ -28,17 +29,17 @@ export const SearchItem: React.FC<Props> = ({ video }) => {
     <SearchItemWrapper className='img' onClick={handleClick}>
       <div className='image-container'>
         <Image
-          src={video.image}
+          src={data.image}
           width={24}
           height={24}
-          alt={video.title}
+          alt={data.title}
           objectFit='cover'
           objectPosition='center'
           className='next-image'
         />
       </div>
       <div className='content-container'>
-        <a>{video.title}</a>
+        <a>{data.title}</a>
       </div>
     </SearchItemWrapper>
   )
