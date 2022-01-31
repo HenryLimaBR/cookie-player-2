@@ -4,9 +4,10 @@ import Head from 'next/head'
 
 import '../styles/global.scss'
 
-import { PlayerContextProvider } from '../contexts/playerContext'
 import { MainLayout } from '../layouts/MainLayout'
+import { PlayerContextProvider } from '../contexts/playerContext'
 import { MediaContextProvider } from '../contexts/mediaContext'
+import { SearchContextProvider } from '../contexts/searchContext'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -17,9 +18,13 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
 
       <PlayerContextProvider>
         <MediaContextProvider>
-          <MainLayout>
-            <Component {...pageProps} />
-          </MainLayout>
+          <SearchContextProvider>
+
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
+
+          </SearchContextProvider>
         </MediaContextProvider>
       </PlayerContextProvider>
     </>
