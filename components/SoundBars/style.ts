@@ -30,7 +30,7 @@ export const SoundBarsWrapper = styled.div<SoundBarsWrapperProps>`
 
     background-color: ${theme.colors.fg2};
 
-    animation: ${barsExpandAnimation} 500ms linear infinite alternate backwards;
+    animation: ${barsExpandAnimation} 500ms ease-in-out infinite alternate backwards;
   }
 
   div:nth-child(1) { animation-delay: 0 }
