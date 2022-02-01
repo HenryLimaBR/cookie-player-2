@@ -26,8 +26,8 @@ export const SearchContextProvider: React.FC<Props> = (props) => {
 
   return (
     <searchContext.Provider value={{
-      searchLoading: searchLoading,
-      searchResults: searchResults,
+      searchLoading,
+      searchResults,
       search
     }}>
       {props.children}
