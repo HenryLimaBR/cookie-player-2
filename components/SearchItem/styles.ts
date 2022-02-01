@@ -1,19 +1,47 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { theme } from '../../themes/default'
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
 
 export const SearchItemWrapper = styled.li`
   width: calc(100% - 16px);
+  height: 64px;
   
   display: grid;
-  grid-template-columns: 32px 1fr;
-
-  height: 32px;
+  grid-template-columns: 64px 64px 1fr;
   
   border-radius: 6px;
-
-  background-color: ${theme.colors.bg3};
-
   overflow: hidden;
+
+  transition: 250ms ease-out;
+  animation: ${fadeIn} 250ms ease-out;
+
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background-color: ${theme.colors.bg3};
+  }
+
+  .status-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    span {
+      font-size: 24px;
+      font-weight: 300;
+    }
+  }
 
   .image-container {
     display: flex;
@@ -29,12 +57,14 @@ export const SearchItemWrapper = styled.li`
 
   .content-container {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
 
-    a {
+    span {
       margin-left: 8px;
       font-weight: bold;
+      font-size: 14px;
     }
   }
 `
