@@ -1,3 +1,3 @@
-import { leafTheme } from './leaf'
+import { oceanTheme } from './ocean'
 
-export const theme = leafTheme
+export const theme = oceanTheme
