@@ -2,36 +2,36 @@ import React, { useContext } from 'react'
 import Image from 'next/image'
 import type { SearchAudioData } from '../../@types/media'
 
-import { playerContext } from '../../contexts/playerContext'
-import { getAudio } from '../../services/client/api'
-
 import { SearchItemWrapper } from './styles'
+
+import { mediaContext } from '../../contexts/mediaContext'
+import { SoundBars } from '../SoundBars'
+import { playerContext } from '../../contexts/playerContext'
 
 type Props = {
   children?: React.ReactNode
   data: SearchAudioData
+  index: number
 }
 
-export const SearchItem: React.FC<Props> = ({ data }) => {
-  const { player, play } = useContext(playerContext)
-
-  const handleClick = async () => {
-    const audio = await getAudio(data.url)
-    try {
-      player.src = audio.url
-      play()
-    } catch (err) {
-      console.warn(err)
-    }
-  }
+export const SearchItem: React.FC<Props> = ({ data, index }) => {
+  const { currentMedia, playCurrentMedia } = useContext(mediaContext)
+  const { isPlaying } = useContext(playerContext)
 
   return (
-    <SearchItemWrapper className='img' onClick={handleClick}>
+    <SearchItemWrapper className='img' onClick={() => playCurrentMedia(data)}>
+      <div className='status-container'>
+        {
+          currentMedia.id === data.id && isPlaying
+            ? <SoundBars size={24} />
+            : <span>{index + 1}</span>
+        }
+      </div>
       <div className='image-container'>
         <Image
           src={data.image}
-          width={24}
-          height={24}
+          width={56}
+          height={56}
           alt={data.title}
           objectFit='cover'
           objectPosition='center'
@@ -39,7 +39,8 @@ export const SearchItem: React.FC<Props> = ({ data }) => {
         />
       </div>
       <div className='content-container'>
-        <a>{data.title}</a>
+        <span>{data.title}</span>
+        <span>{data.timestamp}</span>
       </div>
     </SearchItemWrapper>
   )
