@@ -15,8 +15,8 @@ export const SearchList: React.FC<Props> = (props) => {
     <SearchListWrapper>
       <SearchListComponent>
         {
-          props.results.map((data) => (
-            <SearchItem data={data} key={data.id} />
+          props.results.map((data, index) => (
+            <SearchItem data={data} key={data.id} index={index} />
           ))
         }
       </SearchListComponent>
