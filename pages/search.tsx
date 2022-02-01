@@ -13,11 +13,8 @@ type SearchPageProps = {
 }
 
 const Search: NextPage<SearchPageProps> = (props) => {
-  const router = useRouter()
-  const { q } = router.query
+  const { q } = useRouter().query
   const { searchLoading, searchResults, search } = useContext(searchContext)
-
-  console.log(router)
 
   useEffect(() => {
     q && search(q as string)
