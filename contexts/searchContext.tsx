@@ -1,10 +1,10 @@
 import React, { createContext, useCallback, useState } from 'react'
-import { VideoSearchResult } from 'yt-search'
+import type { SearchAudioData } from '../@types/media'
 import { getSearch } from '../services/client/api'
 
 type SearchContextProps = {
   searchLoading: boolean
-  searchResults: VideoSearchResult[]
+  searchResults: SearchAudioData[]
   search: (query: string) => Promise<void>
 }
 
@@ -16,7 +16,7 @@ type Props = {
 
 export const SearchContextProvider: React.FC<Props> = (props) => {
   const [searchLoading, setSearchLoading] = useState(true)
-  const [searchResults, setSearchResults] = React.useState<VideoSearchResult[]>([])
+  const [searchResults, setSearchResults] = React.useState<SearchAudioData[]>([])
 
   const search = useCallback(async (query: string) => {
     setSearchLoading(true)
