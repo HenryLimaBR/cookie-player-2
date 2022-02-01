@@ -43,6 +43,7 @@ export const SearchItemWrapper = styled.li`
     span {
       font-size: 20px;
       font-weight: 300;
+      text-align: center;
     }
   }
 

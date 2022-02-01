@@ -15,7 +15,7 @@ type Props = {
   index: number
 }
 
-export const SearchItem: React.FC<Props> = ({ data, index }) => {
+export const Item: React.FC<Props> = ({ data, index }) => {
   const { currentMedia, playCurrentMedia } = useContext(mediaContext)
   const { isPlaying, player } = useContext(playerContext)
 
@@ -31,11 +31,11 @@ export const SearchItem: React.FC<Props> = ({ data, index }) => {
         {
           hovering
             ? isPlaying && currentMedia.id === data.id
-              ? (<MdPause size={24} onClick={
-                () => player.pause()
-              } />)
+              ? (<MdPause size={24} onClick={() => player.pause()} />)
               : (<MdPlayArrow size={24} onClick={
-                () => currentMedia.id === data.id ? player.play() : playCurrentMedia(data)
+                () => currentMedia.id === data.id
+                  ? player.play()
+                  : playCurrentMedia(data)
               } />)
             : isPlaying && currentMedia.id === data.id
               ? (<SoundBars size={20} />)
