@@ -51,6 +51,7 @@ export const Item: React.FC<Props> = ({ data, index }) => {
           objectFit='cover'
           objectPosition='center'
           className='next-image'
+          priority={index < 2}
         />
       </div>
       <div className='content-container'>
