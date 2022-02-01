@@ -9,8 +9,11 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `
+type ItemWrapperProps = {
+  isActive?: boolean
+}
 
-export const SearchItemWrapper = styled.li`
+export const ItemWrapper = styled.li<ItemWrapperProps>`
   width: calc(100% - 16px);
   height: 64px;
   
@@ -24,6 +27,8 @@ export const SearchItemWrapper = styled.li`
   animation: ${fadeIn} 250ms ease-out;
 
   user-select: none;
+
+  color: ${({ isActive }) => isActive ? theme.colors.l1 : theme.colors.fg5};
 
   &:hover {
     background-color: ${theme.colors.bg3};

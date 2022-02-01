@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { theme } from '../../themes/default'
 
-export const SearchListWrapper = styled.div`
+export const ListWrapper = styled.div`
   width: calc(100% - 16px);
   height: calc(100% - 16px);
 
@@ -28,7 +28,7 @@ export const SearchListWrapper = styled.div`
   }
 `
 
-export const SearchListComponent = styled.ul`
+export const ListComponent = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;

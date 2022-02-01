@@ -3,7 +3,7 @@ import Image from 'next/image'
 import type { SearchAudioData } from '../../@types/media'
 import { MdPlayArrow, MdPause } from 'react-icons/md'
 
-import { SearchItemWrapper } from './styles'
+import { ItemWrapper } from './styles'
 
 import { mediaContext } from '../../contexts/mediaContext'
 import { SoundBars } from '../SoundBars'
@@ -22,10 +22,11 @@ export const Item: React.FC<Props> = ({ data, index }) => {
   const [hovering, setHovering] = useState(false)
 
   return (
-    <SearchItemWrapper
+    <ItemWrapper
       className='img'
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
+      isActive={currentMedia.id === data.id && !isPlaying}
     >
       <div className='status-container'>
         {
@@ -58,6 +59,6 @@ export const Item: React.FC<Props> = ({ data, index }) => {
         <span>{data.title}</span>
         <span>{data.timestamp}</span>
       </div>
-    </SearchItemWrapper>
+    </ItemWrapper>
   )
 }
