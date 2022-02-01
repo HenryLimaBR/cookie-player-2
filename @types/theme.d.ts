@@ -12,5 +12,6 @@ export interface Theme {
     fg3: string
     fg4: string
     fg5: string
+    l1: string
   }
 }

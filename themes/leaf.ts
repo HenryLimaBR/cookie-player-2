@@ -12,6 +12,7 @@ export const leafTheme: Theme = {
     fg2: "#5d8764",
     fg3: "#6c9272",
     fg4: "#799c7f",
-    fg5: "#85a58b"
+    fg5: "#85a58b",
+    l1: "#c5e5c5",
   }
 }

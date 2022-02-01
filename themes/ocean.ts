@@ -12,6 +12,7 @@ export const oceanTheme: Theme = {
     fg2: "#5d5d97",
     fg3: "#6c6ca2",
     fg4: "#7979bc",
-    fg5: "#8585cb"
+    fg5: "#8585cb",
+    l1: "#c5c5e5",
   }
 }
