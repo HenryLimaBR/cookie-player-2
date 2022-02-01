@@ -23,11 +23,14 @@ export const SearchItemWrapper = styled.li`
   transition: 250ms ease-out;
   animation: ${fadeIn} 250ms ease-out;
 
-  cursor: pointer;
   user-select: none;
 
   &:hover {
     background-color: ${theme.colors.bg3};
+  }
+
+  &:active {
+    background-color: ${theme.colors.bg4};
   }
 
   .status-container {
@@ -38,7 +41,7 @@ export const SearchItemWrapper = styled.li`
     overflow: hidden;
 
     span {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 300;
     }
   }

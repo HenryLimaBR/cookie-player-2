@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Image from 'next/image'
 import type { SearchAudioData } from '../../@types/media'
+import { MdPlayArrow, MdPause } from 'react-icons/md'
 
 import { SearchItemWrapper } from './styles'
 
@@ -18,13 +19,19 @@ export const SearchItem: React.FC<Props> = ({ data, index }) => {
   const { currentMedia, playCurrentMedia } = useContext(mediaContext)
   const { isPlaying } = useContext(playerContext)
 
+  const [hovering, setHovering] = useState(false)
+
   return (
-    <SearchItemWrapper className='img' onClick={() => playCurrentMedia(data)}>
-      <div className='status-container'>
+    <SearchItemWrapper
+      className='img'
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
+    >
+      <div className='status-container' onClick={() => playCurrentMedia(data)}>
         {
-          currentMedia.id === data.id && isPlaying
-            ? <SoundBars size={24} />
-            : <span>{index + 1}</span>
+          hovering
+            ? isPlaying && currentMedia.id === data.id ? <MdPause size={24} /> : <MdPlayArrow size={24} />
+            : isPlaying && currentMedia.id === data.id ? <SoundBars size={24} /> : <span>{index + 1}</span>
         }
       </div>
       <div className='image-container'>
