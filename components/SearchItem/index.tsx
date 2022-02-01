@@ -17,7 +17,7 @@ type Props = {
 
 export const SearchItem: React.FC<Props> = ({ data, index }) => {
   const { currentMedia, playCurrentMedia } = useContext(mediaContext)
-  const { isPlaying } = useContext(playerContext)
+  const { isPlaying, player } = useContext(playerContext)
 
   const [hovering, setHovering] = useState(false)
 
@@ -27,11 +27,19 @@ export const SearchItem: React.FC<Props> = ({ data, index }) => {
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
-      <div className='status-container' onClick={() => playCurrentMedia(data)}>
+      <div className='status-container'>
         {
           hovering
-            ? isPlaying && currentMedia.id === data.id ? <MdPause size={24} /> : <MdPlayArrow size={24} />
-            : isPlaying && currentMedia.id === data.id ? <SoundBars size={24} /> : <span>{index + 1}</span>
+            ? isPlaying && currentMedia.id === data.id
+              ? (<MdPause size={24} onClick={
+                () => player.pause()
+              } />)
+              : (<MdPlayArrow size={24} onClick={
+                () => currentMedia.id === data.id ? player.play() : playCurrentMedia(data)
+              } />)
+            : isPlaying && currentMedia.id === data.id
+              ? (<SoundBars size={20} />)
+              : (<span>{index + 1}</span>)
         }
       </div>
       <div className='image-container'>
