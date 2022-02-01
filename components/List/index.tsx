@@ -3,20 +3,20 @@ import type { SearchAudioData } from '../../@types/media'
 
 import { SearchListWrapper, SearchListComponent } from './styles'
 
-import { SearchItem } from '../SearchItem'
+import { Item } from '../Item'
 
 type Props = {
   children?: React.ReactNode
   results: SearchAudioData[]
 }
 
-export const SearchList: React.FC<Props> = (props) => {
+export const List: React.FC<Props> = (props) => {
   return (
     <SearchListWrapper>
       <SearchListComponent>
         {
           props.results.map((data, index) => (
-            <SearchItem data={data} key={data.id} index={index} />
+            <Item data={data} key={data.id} index={index} />
           ))
         }
       </SearchListComponent>
