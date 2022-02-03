@@ -62,7 +62,7 @@ export const SearchBoxWrapper = styled.div`
 
       background-color: ${theme.colors.bg5};
       transition: 250ms ease-out;
-      animation: ${zoomIn} 10ms ease-out;
+      animation: ${zoomIn} 100ms ease-out backwards;
       cursor: pointer;
 
       &:hover {
