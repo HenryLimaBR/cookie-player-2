@@ -19,6 +19,7 @@ export const SearchContextProvider: React.FC<Props> = (props) => {
   const [searchResults, setSearchResults] = React.useState<SearchAudioData[]>([])
 
   const search = useCallback(async (query: string) => {
+    if (query.length < 1) return
     setSearchLoading(true)
     setSearchResults(await getSearch(query))
     setSearchLoading(false)
