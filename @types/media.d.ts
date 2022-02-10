@@ -8,3 +8,7 @@ export interface SearchAudioData {
   url: string
   views: number
 }
+
+export interface AudioData extends SearchAudioData {
+  lastListenedAt: Date
+}
