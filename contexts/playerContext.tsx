@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useCallback, useState } from 'react'
-import { State } from '../@types/generic'
+
+import type { State } from '../@types/generic'
 
 type PlayerContextProps = {
   player: HTMLAudioElement
@@ -21,11 +22,15 @@ export const PlayerContextProvider: React.FC<Props> = (props) => {
   const [currentTime, setCurrentTime] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState(0)
-  const [volume, setStateVolume] = useState(50)
+  const [volume, setStateVolume] = useState(30)
+
+  useEffect(() => {
+    player.volume = volume / 100
+  }, [volume, player])
 
   useEffect(() => {
     if (!(player instanceof HTMLAudioElement)) {
-      setPlayer(new Audio())
+      setPlayer(new window.Audio())
     } else {
       const currentTimeCallback = () => {
         setCurrentTime(player.currentTime)
