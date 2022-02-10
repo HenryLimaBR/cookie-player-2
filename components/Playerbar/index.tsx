@@ -1,30 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
+
 import { PlayerbarWrapper } from './styles'
-import Head from 'next/head'
 
-import { playerContext } from '../../contexts/playerContext'
-import { parseSeconds } from '../../utils/time'
-import { theme } from '../../themes/default'
+import { VolumeSlider } from '../VolumeSlider'
 
-interface IProps {
+type PlayerbarProps = {
   children?: React.ReactNode
 }
 
-export const Playerbar: React.FC<IProps> = (props) => {
-  const { currentTime, isPlaying, duration } = useContext(playerContext)
+export const Playerbar: React.FC<PlayerbarProps> = (props) => {
 
   return (
     <PlayerbarWrapper>
-      {
-        isPlaying && (
-          <Head>
-            <title>🍁 {parseSeconds(currentTime, duration)} No Media - No Author</title>
-          </Head>
-        )
-      }
-
-      <h1 style={{ color: theme.colors.fg5 }}>{parseSeconds(currentTime, duration)}</h1>
-      <h1 style={{ color: theme.colors.fg5 }}>{String(isPlaying)}</h1>
+      <VolumeSlider />
     </PlayerbarWrapper>
   )
 }
