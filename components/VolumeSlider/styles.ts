@@ -6,11 +6,13 @@ export const VolumeWrapper = styled.div`
   position: relative;
 
   display: grid;
-  grid-template-columns: 32px 1fr;
+  grid-template-columns: 40px 1fr;
   grid-template-rows: 1fr;
 
   width: 120px;
   height: 24px;
+
+  user-select: none;
 
   .mute-btn {
     display: flex;
@@ -33,5 +35,11 @@ export const VolumeWrapper = styled.div`
     &:active {
       transform: scale(0.9);
     }
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `

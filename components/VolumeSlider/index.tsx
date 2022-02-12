@@ -29,15 +29,18 @@ export const VolumeSlider: React.FC<Props> = (props) => {
       <button className='mute-btn' onClick={handleMute}>
         {
           volume > 0
-            ? <MdVolumeUp size={24} />
-            : <MdVolumeOff size={24} />
+            ? <MdVolumeUp size={20} />
+            : <MdVolumeOff size={20} />
         }
       </button>
-      <Slider
-        onValueChange={([v]) => setVolume(v)}
-        value={[volume]}
-        defaultValue={[50]}
-      />
+      <form>
+        <Slider
+          min={0}
+          max={100}
+          value={volume}
+          onValueChange={setVolume}
+        />
+      </form>
     </VolumeWrapper>
   )
 }

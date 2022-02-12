@@ -1,57 +1,72 @@
 import styled from 'styled-components'
-import { Root, Track, Range, Thumb } from '@radix-ui/react-slider'
 import { theme } from '../../themes/default'
 
-export const SliderRoot = styled(Root)`
-  position: relative;
+export const SliderWrapper = styled.div`
   display: flex;
+
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  &:hover > span .slider-range {
-    background-color: ${theme.colors.fg5};
+  width: 100%;
+  height: 100%;
+  
+  &:hover > div > span:nth-child(1) {
+    background-color: ${theme.colors.fg4};
   }
 
-  &:hover > span .slider-thumb {
-    opacity: 1;
+  &:hover > div > span:nth-child(2) {
+    background-color: ${theme.colors.l1};
+    transform: translateX(-50%) scale(1.25);
   }
 `
 
-export const SliderTrack = styled(Track)`
+export const SliderTrack = styled.div`
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
   width: 100%;
   height: 4px;
+
   border-radius: 2px;
 
-  background-color: ${theme.colors.bg4};
+  background-color: ${theme.colors.bg2};
 `
 
-export const SliderRange = styled(Range)`
+export const SliderRange = styled.span<{ rangeWidth?: number }>`
   position: absolute;
-  display: block;
+  left: 0;
 
-  height: 4px;
+  width: ${({ rangeWidth }) => typeof rangeWidth !== 'undefined' ? rangeWidth : 50}%;
+  height: 100%;
 
   border-radius: 2px;
 
-  background-color: ${theme.colors.fg2};
+  user-select: none;
+  pointer-events: none;
+
+  background-color: ${theme.colors.bg5};
+
+  transition: 100ms ease-out;
 `
+export const SliderThumb = styled.span<{ left?: number }>`
+  position: absolute;
+  left: ${({ left }) => typeof left !== 'undefined' ? left : 0}%;
 
-export const SliderThumb = styled(Thumb)`
-  display: flex;
+  width: 12px;
+  height: 12px;
 
-  width: 16px;
-  height: 16px;
+  user-select: none;
+  pointer-events: none;
 
   border-radius: 50%;
 
-  background-color: ${theme.colors.l1};
-  opacity: 0;
+  background-color: ${theme.colors.fg4};
 
-  &:focus {
-    outline: 0;
-  }
+  transform: translateX(-50%);
+
+  transition: 100ms ease-out;
 `
