@@ -23,7 +23,7 @@ export const PlayerContextProvider: React.FC<Props> = (props) => {
   const [currentTime, setCurrentTime] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState(0)
-  const [volume, setStateVolume] = useLocalStorage('@cp2/volume', 30)
+  const [volume, setStateVolume] = useLocalStorage('@cp2/volume', 25)
 
   useEffect(() => {
     if (!(player instanceof HTMLAudioElement)) {

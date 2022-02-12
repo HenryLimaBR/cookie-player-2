@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const Slider: React.FC<Props> = ({
-  min = 0, max = 100, defaultValue = 50, value: valueProp, onValueChange
+  min = 0, max = 100, defaultValue = 0, value: valueProp, onValueChange
 }) => {
   const [value, setValue] = useState(defaultValue)
 
