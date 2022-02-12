@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useCallback, useState } from 'react'
 
 import type { State } from '../@types/generic'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 type PlayerContextProps = {
   player: HTMLAudioElement
@@ -22,16 +23,14 @@ export const PlayerContextProvider: React.FC<Props> = (props) => {
   const [currentTime, setCurrentTime] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState(0)
-  const [volume, setStateVolume] = useState(30)
-
-  useEffect(() => {
-    player.volume = volume / 100
-  }, [volume, player])
+  const [volume, setStateVolume] = useLocalStorage('@cp2/volume', 30)
 
   useEffect(() => {
     if (!(player instanceof HTMLAudioElement)) {
       setPlayer(new window.Audio())
     } else {
+      player.volume = volume / 100
+
       const currentTimeCallback = () => {
         setCurrentTime(player.currentTime)
       }
@@ -67,7 +66,7 @@ export const PlayerContextProvider: React.FC<Props> = (props) => {
         player.removeEventListener('volumechange', volumeCallback)
       }
     }
-  }, [player, setStateVolume])
+  }, [player, volume, setStateVolume])
 
   const play = useCallback(async () => {
     player.play()
