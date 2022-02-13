@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../../themes/default'
 
 export const ListWrapper = styled.div`
   width: calc(100% - 16px);
@@ -13,17 +12,17 @@ export const ListWrapper = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background-color: ${theme.colors.bg3};
+    background-color: #333538;
     border-radius: 4px;
   }
 
   &::-webkit-scrollbar-thumb {	
     height: 10%;
-    background-color: ${theme.colors.fg1};
+    background-color: #737578;
     border-radius: 4px;
 
     &:hover {
-      background-color: ${theme.colors.fg2};
+      background-color: #a3a5a8;
     }
   }
 `

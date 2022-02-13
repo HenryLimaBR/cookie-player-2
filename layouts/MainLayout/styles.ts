@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { theme } from '../../themes/default'
-
 export const LayoutWrapper = styled.div`
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -11,7 +9,7 @@ export const LayoutWrapper = styled.div`
   width: 100%;
   height: 100%;
 
-  background-color: ${theme.colors.bg1};
+  background-color: #131518;
 `
 
 export const ContentWrapper = styled.div`

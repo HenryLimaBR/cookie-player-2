@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components'
-import { theme } from '../../themes/default'
 
 const zoomIn = keyframes`
   from {
@@ -19,7 +18,7 @@ export const SearchBoxWrapper = styled.div`
   margin: 5px;
   border-radius: 4px;
 
-  background-color: ${theme.colors.bg2};
+  background-color: #232528;
   overflow: hidden;
 
   div {
@@ -42,11 +41,11 @@ export const SearchBoxWrapper = styled.div`
 
       font-size: 14px;
 
-      color: ${theme.colors.fg5};
+      color: #c3c5c8;
       background-color: transparent;
 
       &::placeholder {
-        color: ${theme.colors.fg1};
+        color: #838588;
       }
     }
 
@@ -60,13 +59,13 @@ export const SearchBoxWrapper = styled.div`
       border: 0;
       border-radius: 50%;
 
-      background-color: ${theme.colors.bg5};
+      background-color: #838588;
       transition: 250ms ease-out;
       animation: ${zoomIn} 100ms ease-out backwards;
       cursor: pointer;
 
       &:hover {
-        background-color: ${theme.colors.fg1};
+        background-color: #a3a5a8;
         transform: scale(1.1);
       }
     }
@@ -78,17 +77,19 @@ export const SearchBoxWrapper = styled.div`
 
     border: 0;
 
-    background-color: ${theme.colors.bg5};
+    background-color: #838588;
     transition: 250ms ease-out;
     cursor: pointer;
 
+    color: #030508;
+
     &:hover {
-      background-color: ${theme.colors.fg1};
+      background-color: #a3a5a8;
       transform: scale(1.1);
     }
 
     &:active {
-      background-color: ${theme.colors.fg2};
+      background-color: #f3f5f8;
     }
   }  
 `

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../../themes/default'
 
 export const SliderWrapper = styled.div`
   display: flex;
@@ -12,11 +11,11 @@ export const SliderWrapper = styled.div`
   height: 100%;
   
   &:hover > div > span:nth-child(1) {
-    background-color: ${theme.colors.fg4};
+    background-color: #838588;
   }
 
   &:hover > div > span:nth-child(2) {
-    background-color: ${theme.colors.l1};
+    background-color: #a3a5a8;
     transform: translateX(-50%) scale(1.25);
   }
 `
@@ -33,7 +32,7 @@ export const SliderTrack = styled.div`
 
   border-radius: 2px;
 
-  background-color: ${theme.colors.bg2};
+  background-color: #030508;
 `
 
 export const SliderRange = styled.span<{ rangeWidth?: number }>`
@@ -48,7 +47,7 @@ export const SliderRange = styled.span<{ rangeWidth?: number }>`
   user-select: none;
   pointer-events: none;
 
-  background-color: ${theme.colors.bg5};
+  background-color: #535558;
 
   transition: 100ms ease-out;
 `
@@ -64,7 +63,7 @@ export const SliderThumb = styled.span<{ left?: number }>`
 
   border-radius: 50%;
 
-  background-color: ${theme.colors.fg4};
+  background-color: #838588;
 
   transform: translateX(-50%);
 

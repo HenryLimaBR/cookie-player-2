@@ -1,3 +1,3 @@
-import { leafTheme } from './leaf'
+import { modernTheme } from './modern'
 
-export const theme = leafTheme
+export const theme = modernTheme

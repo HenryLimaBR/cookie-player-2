@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components'
-import { theme } from '../../themes/default'
 
 type SoundBarsWrapperProps = {
   size: number
@@ -28,7 +27,7 @@ export const SoundBarsWrapper = styled.div<SoundBarsWrapperProps>`
 
     border-radius: 6px;
 
-    background-color: ${theme.colors.fg2};
+    background-color: #838588;
 
     animation: ${barsExpandAnimation} 500ms ease-in-out infinite alternate backwards;
   }

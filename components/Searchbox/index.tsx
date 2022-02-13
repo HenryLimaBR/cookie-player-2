@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { MdSearch, MdClose } from 'react-icons/md'
 
 import { SearchBoxWrapper } from './styles'
-import { theme } from '../../themes/default'
 
 type Props = {
   children?: React.ReactNode
@@ -38,7 +37,7 @@ export const Searchbox: React.FC<Props> = (props) => {
               className='clear'
               onClick={() => setSearchQuery('')}
             >
-              <MdClose size={16} color={theme.colors.fg5} />
+              <MdClose size={16} />
             </button>
           )
         }
@@ -48,7 +47,7 @@ export const Searchbox: React.FC<Props> = (props) => {
         className='search'
         onClick={handleSearch}
       >
-        <MdSearch size={24} color={theme.colors.fg5} />
+        <MdSearch size={24} />
       </button>
     </SearchBoxWrapper>
   )

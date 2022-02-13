@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components'
-import { theme } from '../../themes/default'
 
 type StyledLoaderProps = {
   size: number
@@ -28,7 +27,7 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
 
     border-width: 2px;
     border-style: solid;
-    border-color: ${theme.colors.fg3} ${theme.colors.fg3}44 ${theme.colors.fg3} ${theme.colors.fg3};
+    border-color: #a3a5a8 #a3a5a844 #a3a5a8 #a3a5a8;
 
     animation: ${rotate} 1s ease infinite;
   }

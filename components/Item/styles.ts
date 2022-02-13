@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components'
-import { theme } from '../../themes/default'
 
 const fadeIn = keyframes`
   from {
@@ -28,14 +27,14 @@ export const ItemWrapper = styled.li<ItemWrapperProps>`
 
   user-select: none;
 
-  color: ${({ isActive }) => isActive ? theme.colors.l1 : theme.colors.fg5};
+  color: ${({ isActive }) => isActive ? '#f3f5f8' : '#a3a5a8'};
 
   &:hover {
-    background-color: ${theme.colors.bg3};
+    background-color: #a3a5a832;
   }
 
   &:active {
-    background-color: ${theme.colors.bg4};
+    background-color: #a3a5a816;
   }
 
   .status-container {

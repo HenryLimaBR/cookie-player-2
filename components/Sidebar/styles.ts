@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../../themes/default'
 
 export const SidebarWrapper = styled.aside`
   grid-area: Sidebar;
@@ -9,5 +8,5 @@ export const SidebarWrapper = styled.aside`
   align-items: center;
   flex-direction: column;
 
-  background-color: ${theme.colors.bg4};
+  background-color: #333538;
 `

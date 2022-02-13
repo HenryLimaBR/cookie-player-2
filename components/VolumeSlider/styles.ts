@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { theme } from '../../themes/default'
-
 export const VolumeWrapper = styled.div`
   position: relative;
 
@@ -9,8 +7,10 @@ export const VolumeWrapper = styled.div`
   grid-template-columns: 40px 1fr;
   grid-template-rows: 1fr;
 
-  justify-self: center;
+  justify-self: flex-end;
   align-self: center;
+
+  margin-right: 16px;
 
   width: 120px;
   height: 24px;
@@ -24,14 +24,14 @@ export const VolumeWrapper = styled.div`
 
     border: 0;
 
-    color: ${theme.colors.fg4};
+    color: #838588;
     background-color: #0000;
 
     cursor: pointer;
     transition: 200ms ease-out;
 
     &:hover {
-      color: ${theme.colors.l1};
+      color: #a3a5a8;
       transform: scale(1.1);
     }
 

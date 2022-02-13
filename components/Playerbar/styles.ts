@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../../themes/default'
 
 export const PlayerbarWrapper = styled.footer`
   grid-area: Playerbar;
@@ -8,5 +7,5 @@ export const PlayerbarWrapper = styled.footer`
   grid-template-columns: 2fr 3fr 2fr;
   grid-template-rows: 1fr;
 
-  background-color: ${theme.colors.bg3};
+  background-color: #232528;
 `
