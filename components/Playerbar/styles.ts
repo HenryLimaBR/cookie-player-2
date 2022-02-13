@@ -4,10 +4,9 @@ import { theme } from '../../themes/default'
 export const PlayerbarWrapper = styled.footer`
   grid-area: Playerbar;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+  grid-template-rows: 1fr;
 
   background-color: ${theme.colors.bg3};
 `

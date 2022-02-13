@@ -9,6 +9,9 @@ export const VolumeWrapper = styled.div`
   grid-template-columns: 40px 1fr;
   grid-template-rows: 1fr;
 
+  justify-self: center;
+  align-self: center;
+
   width: 120px;
   height: 24px;
 

@@ -12,6 +12,8 @@ export const Playerbar: React.FC<PlayerbarProps> = (props) => {
 
   return (
     <PlayerbarWrapper>
+      <div/>
+      <div />
       <VolumeSlider />
     </PlayerbarWrapper>
   )
