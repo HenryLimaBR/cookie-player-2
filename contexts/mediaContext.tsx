@@ -1,9 +1,9 @@
-import React, { createContext, useCallback, useContext, useEffect } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import type { SearchAudioData } from '../@types/media'
 
 import { getAudio } from '../services/client/api'
 import { playerContext } from './playerContext'
-import { useLocalStorage } from '../hooks/useLocalStorage'
+// import { useLocalStorage } from '../hooks/useLocalStorage'
 
 type MediaContextProps = {
   currentMedia: SearchAudioData
@@ -18,7 +18,8 @@ type Props = {
 
 export const MediaContextProvider: React.FC<Props> = (props) => {
   const { player } = useContext(playerContext)
-  const [currentMedia, setCurrentMedia] = useLocalStorage<SearchAudioData>('@cp2/lastMedia', {} as SearchAudioData)
+  // const [currentMedia, setCurrentMedia] = useLocalStorage<SearchAudioData>('@cp2/lastMedia', {} as SearchAudioData)
+  const [currentMedia, setCurrentMedia] = useState<SearchAudioData>({} as SearchAudioData)
 
   const setMetaData = useCallback((data: SearchAudioData) => {
     if ('mediaSession' in navigator) {
