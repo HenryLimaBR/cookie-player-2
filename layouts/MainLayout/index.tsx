@@ -2,17 +2,17 @@ import React from 'react'
 
 import { ContentWrapper, LayoutWrapper } from './styles'
 
-import { Navbar } from '../../components/Navbar'
+import { Sidebar } from '../../components/Sidebar'
 import { Playerbar } from '../../components/Playerbar'
 
-interface IProps {
+type MainLayoutProps = {
   children?: React.ReactNode
 }
 
-export const MainLayout: React.FC<IProps> = (props) => {
+export const MainLayout: React.FC<MainLayoutProps> = (props) => {
   return (
     <LayoutWrapper>
-      <Navbar />
+      <Sidebar />
 
       <ContentWrapper>
         {props.children}

@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   return (
     <PageWrapper>
       <Head>
-        <title>🍁 Cookie Player 2</title>
+        <title>Cookie Player 2</title>
       </Head>
 
       <Loader />

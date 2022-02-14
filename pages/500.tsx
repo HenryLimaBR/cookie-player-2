@@ -3,11 +3,11 @@ import { NextPage } from 'next'
 
 import { PageWrapper } from '../styles/Pages'
 
-interface IProps {
+type Custom500PageProps = {
   children?: React.ReactNode
 }
 
-const Custom500: NextPage = (props: IProps) => {
+const Custom500: NextPage<Custom500PageProps> = (props) => {
   return (
     <PageWrapper>
       <h1>500 - Internal Server Error!</h1>

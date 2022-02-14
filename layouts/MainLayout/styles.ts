@@ -1,24 +1,18 @@
 import styled from 'styled-components'
 
-import { theme } from '../../themes/default'
-
 export const LayoutWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 54px 1fr 72px;
-  grid-template-areas: 'Navbar' 'Main' 'Playerbar';
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 1fr 72px;
+  grid-template-areas: 'Sidebar Main' 'Playerbar Playerbar';
 
   width: 100%;
   height: 100%;
 
-  background-color: ${theme.colors.bg1};
+  background-color: #131518;
 `
 
 export const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   grid-area: Main;
   overflow: hidden;
 `

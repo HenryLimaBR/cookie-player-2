@@ -1,9 +1,9 @@
 import axios from 'axios'
-import type { VideoSearchResult } from 'yt-search'
+import type { SearchAudioData } from '../../@types/media'
 import type { videoFormat } from 'ytdl-core'
 
 export async function getSearch(q: string) {
-  const response = await axios.get<VideoSearchResult[]>('/api/search', {
+  const response = await axios.get<SearchAudioData[]>('/api/search', {
     params: { q }
   })
 

@@ -1,11 +1,14 @@
-import React, { createContext, useEffect } from 'react'
-import { Player } from '../services/client/player'
+import React, { createContext, useEffect, useCallback, useState } from 'react'
+
+import type { State } from '../@types/generic'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 type PlayerContextProps = {
-  player: Player
-  currentTime: number
+  player: HTMLAudioElement
   isPlaying: boolean
   duration: number
+  volumeState: State<number, (volume: number) => void>
+  currentTimeState: State<number, (currentTime: number) => void>
 }
 
 export const playerContext = createContext({} as PlayerContextProps)
@@ -15,52 +18,71 @@ type Props = {
 }
 
 export const PlayerContextProvider: React.FC<Props> = (props) => {
-  const [player, setPlayer] = React.useState<Player>({} as Player)
-  const [currentTime, setCurrentTime] = React.useState(0)
-  const [isPlaying, setIsPlaying] = React.useState(false)
-  const [duration, setDuration] = React.useState(0)
+  const [player, setPlayer] = useState<HTMLAudioElement>({} as HTMLAudioElement)
+  const [currentTime, setCurrentTimeState] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [duration, setDuration] = useState(0)
+  const [volume, setVolumeState] = useLocalStorage('@cp2/volume', 25)
 
   useEffect(() => {
-    if (!player.ready) {
-      setPlayer(new Player())
+    if (!(player instanceof HTMLAudioElement)) {
+      setPlayer(new window.Audio())
     } else {
+      player.volume = volume / 100
+
       const currentTimeCallback = () => {
-        setCurrentTime(player.core.currentTime)
+        setCurrentTimeState(player.currentTime)
       }
       const isPlayingCallback = () => {
-        setIsPlaying(!player.core.paused && !player.core.ended)
+        setIsPlaying(!player.paused && !player.ended)
       }
       const durationCallback = () => {
-        setDuration(player.core.duration)
+        setDuration(player.duration)
+      }
+      const volumeCallback = () => {
+        setVolumeState(Math.floor(player.volume * 100))
       }
 
-      player.core.addEventListener('timeupdate', currentTimeCallback)
+      player.addEventListener('timeupdate', currentTimeCallback)
 
-      player.core.addEventListener('playing', isPlayingCallback)
-      player.core.addEventListener('pause', isPlayingCallback)
-      player.core.addEventListener('ended', isPlayingCallback)
+      player.addEventListener('playing', isPlayingCallback)
+      player.addEventListener('pause', isPlayingCallback)
+      player.addEventListener('ended', isPlayingCallback)
 
-      player.core.addEventListener('canplay', durationCallback)
+      player.addEventListener('canplay', durationCallback)
+
+      player.addEventListener('volumechange', volumeCallback)
 
       return () => {
-        player.core.removeEventListener('timeupdate', currentTimeCallback)
+        player.removeEventListener('timeupdate', currentTimeCallback)
 
-        player.core.removeEventListener('playing', isPlayingCallback)
-        player.core.removeEventListener('pause', isPlayingCallback)
-        player.core.removeEventListener('ended', isPlayingCallback)
+        player.removeEventListener('playing', isPlayingCallback)
+        player.removeEventListener('pause', isPlayingCallback)
+        player.removeEventListener('ended', isPlayingCallback)
 
-        player.core.removeEventListener('canplay', durationCallback)
+        player.removeEventListener('canplay', durationCallback)
+
+        player.removeEventListener('volumechange', volumeCallback)
       }
     }
+  }, [player, volume, setVolumeState])
+
+  const setVolume = useCallback((vol: number) => {
+    player.volume = vol / 100
+  }, [player])
+
+  const setCurrentTime = useCallback((time: number) => {
+    player.currentTime = time
   }, [player])
 
   return (
     <playerContext.Provider
       value={{
         player,
-        currentTime,
         isPlaying,
         duration,
+        volumeState: [volume, setVolume],
+        currentTimeState: [currentTime, setCurrentTime]
       }}
     >
       {props.children}

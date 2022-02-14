@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../themes/default'
 
 export const PageWrapper = styled.div`
   width: 100%;
@@ -10,5 +9,7 @@ export const PageWrapper = styled.div`
   align-items: center;
   flex-direction: column;
 
-  color: ${theme.colors.fg5};
+  color: #a3a5a8;
+
+  overflow: auto;
 `
