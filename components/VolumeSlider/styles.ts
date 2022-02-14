@@ -39,10 +39,4 @@ export const VolumeWrapper = styled.div`
       transform: scale(0.9);
     }
   }
-
-  form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `

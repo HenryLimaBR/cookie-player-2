@@ -33,14 +33,13 @@ export const VolumeSlider: React.FC<Props> = (props) => {
             : <MdVolumeOff size={20} />
         }
       </button>
-      <form>
-        <Slider
-          min={0}
-          max={100}
-          value={volume}
-          onValueChange={setVolume}
-        />
-      </form>
+      <Slider
+        min={0}
+        max={100}
+        value={volume}
+        onChange={setVolume}
+        thumbVisibility='hover'
+      />
     </VolumeWrapper>
   )
 }

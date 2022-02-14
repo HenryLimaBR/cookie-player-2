@@ -2,6 +2,7 @@ import React from 'react'
 
 import { PlayerbarWrapper } from './styles'
 
+import { AudioControls } from '../AudioControls'
 import { VolumeSlider } from '../VolumeSlider'
 
 type PlayerbarProps = {
@@ -13,7 +14,7 @@ export const Playerbar: React.FC<PlayerbarProps> = (props) => {
   return (
     <PlayerbarWrapper>
       <div/>
-      <div />
+      <AudioControls />
       <VolumeSlider />
     </PlayerbarWrapper>
   )
