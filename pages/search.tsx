@@ -26,10 +26,6 @@ const Search: NextPage<SearchPageProps> = (props) => {
 
   return (
     <PageWrapper>
-      <Head>
-        <title>Search: {q}</title>
-      </Head>
-
       {
         searchLoading
           ? <Loader />
