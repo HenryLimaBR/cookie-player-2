@@ -33,9 +33,6 @@ export const MediaContextProvider: React.FC<Props> = (props) => {
 
   const playCurrentMedia = useCallback(async (data: SearchAudioData) => {
     const audio = await getAudio(data.url)
-
-    setMetaData(data)
-
     try {
       player.src = audio.url
       player.play()
@@ -43,6 +40,7 @@ export const MediaContextProvider: React.FC<Props> = (props) => {
       console.warn(err)
     } finally {
       setCurrentMedia(data)
+      setMetaData(data)
     }
   }, [player, setCurrentMedia, setMetaData])
 
