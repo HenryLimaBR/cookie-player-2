@@ -8,22 +8,36 @@ type Props = {
   max?: number
   defaultValue?: number
   value?: number
-  onValueChange?: (value: number) => void
+  thumbVisibility?: 'always' | 'hover' | 'never'
+  onChange?: (value: number) => void
+  onLastChange?: (value: number) => void
+  onDragToggle?: (drag: boolean) => void
 }
 
 export const Slider: React.FC<Props> = ({
-  min = 0, max = 100, defaultValue = 0, value: valueProp, onValueChange
+  min = 0, max = 100, defaultValue = 0, value: valueProp,
+  thumbVisibility = 'always',
+  onChange, onLastChange, onDragToggle
 }) => {
   const [value, setValue] = useState(defaultValue)
+  const [isDragging, setIsDragging] = useState(false)
 
   useEffect(() => {
-    setValue(typeof valueProp !== 'undefined' ? valueProp : defaultValue)
-  }, [valueProp, defaultValue])
+    !isDragging
+      && setValue(typeof valueProp !== 'undefined' ? valueProp : defaultValue)
+  }, [valueProp, defaultValue, isDragging])
 
-  const setValueByPosAndDispatch = useCallback((value: number,) => {
-    setValue(value)
-    if (onValueChange) onValueChange(value)
-  }, [onValueChange])
+  const dispatchOnChange = useCallback((value: number) => {
+    onChange && onChange(value)
+  }, [onChange])
+
+  const dispatchOnLastChange = useCallback((value: number) => {
+    onLastChange && onLastChange(value)
+  }, [onLastChange])
+
+  const dispatchOnDragToggle = useCallback((drag: boolean) => {
+    onDragToggle && onDragToggle(drag)
+  }, [onDragToggle])
 
   const parsePosToValue = useCallback((pos: number, width: number) => {
     return pos >= 0 && pos <= width
@@ -32,36 +46,64 @@ export const Slider: React.FC<Props> = ({
   }, [min, max])
 
   const handleDrag = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setIsDragging(true)
+    dispatchOnDragToggle && dispatchOnDragToggle(true)
+
     const { left, width } = e.currentTarget.getBoundingClientRect()
+    let value = 0
 
     const mouseUpListener = () => {
       window.removeEventListener('mouseup', mouseUpListener)
       window.removeEventListener('mousemove', mouseMoveListener)
       window.removeEventListener('mouseleave', mouseUpListener)
+
+      dispatchOnLastChange(value)
+
+      setIsDragging(false)
+      dispatchOnDragToggle && dispatchOnDragToggle(false)
     }
 
     const mouseMoveListener = (e: MouseEvent) => {
-      setValueByPosAndDispatch(parsePosToValue(e.clientX - left, width))
+      value = parsePosToValue(e.clientX - left, width)
+      setValue(value)
+      dispatchOnChange(value)
     }
 
-    window.addEventListener('mouseup', mouseUpListener)
     window.addEventListener('mousemove', mouseMoveListener)
+    window.addEventListener('mouseup', mouseUpListener)
     window.addEventListener('mouseleave', mouseUpListener)
-  }, [parsePosToValue, setValueByPosAndDispatch])
+
+  }, [parsePosToValue, dispatchOnChange, dispatchOnLastChange, dispatchOnDragToggle])
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setValueByPosAndDispatch(
-      parsePosToValue(
-        e.nativeEvent.offsetX,
-        e.currentTarget.getBoundingClientRect().width
-      ))
-  }, [parsePosToValue, setValueByPosAndDispatch])
+    const { offsetX } = e.nativeEvent
+    const { width } = e.currentTarget.getBoundingClientRect()
+    const value = parsePosToValue(offsetX, width)
+    setValue(value)
+    dispatchOnChange(value)
+    dispatchOnLastChange(value)
+  }, [parsePosToValue, dispatchOnChange, dispatchOnLastChange])
 
   return (
-    <SliderWrapper onMouseDown={handleDrag} onClick={handleClick} draggable='false'>
+    <SliderWrapper
+      onMouseDown={handleDrag}
+      onClick={handleClick}
+      draggable='false'
+      thumbVisibility={thumbVisibility}
+      isDragging={isDragging}
+    >
       <SliderTrack>
-        <SliderRange rangeWidth={Math.round((value / max) * 100)} />
-        <SliderThumb left={Math.round((value / max) * 100)} />
+        <SliderRange
+          rangeWidth={Math.round((value / max) * 100)}
+        />
+
+        {
+          thumbVisibility !== 'never' && (
+            <SliderThumb
+              left={Math.round((value / max) * 100)}
+            />
+          )
+        }
       </SliderTrack>
     </SliderWrapper>
   )

@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-export const SliderWrapper = styled.div`
+type SliderWrapperProps = {
+  thumbVisibility: string
+  isDragging: boolean
+}
+
+export const SliderWrapper = styled.div<SliderWrapperProps>`
   display: flex;
 
   flex-direction: column;
@@ -14,9 +19,22 @@ export const SliderWrapper = styled.div`
     background-color: #838588;
   }
 
+  & > div > span:nth-child(2) {
+    display: ${props => props.thumbVisibility !== 'never' ? 'block' : 'none'};
+
+    opacity: ${props => props.thumbVisibility === 'always'
+      ? 1
+      : props.thumbVisibility === 'hover' && props.isDragging
+        ? 1
+        : 0
+    };
+
+  }
+
   &:hover > div > span:nth-child(2) {
     background-color: #a3a5a8;
     transform: translateX(-50%) scale(1.25);
+    opacity: ${props => props.thumbVisibility === 'hover' ? 1 : 'unset'};
   }
 `
 
@@ -35,7 +53,11 @@ export const SliderTrack = styled.div`
   background-color: #030508;
 `
 
-export const SliderRange = styled.span<{ rangeWidth?: number }>`
+type SliderRangeProps = {
+  rangeWidth?: number
+}
+
+export const SliderRange = styled.span<SliderRangeProps>`
   position: absolute;
   left: 0;
 
@@ -51,8 +73,14 @@ export const SliderRange = styled.span<{ rangeWidth?: number }>`
 
   transition: 100ms ease-out;
 `
-export const SliderThumb = styled.span<{ left?: number }>`
+
+type SliderThumbProps = {
+  left?: number
+}
+
+export const SliderThumb = styled.span<SliderThumbProps>`
   position: absolute;
+  left: 0;
   left: ${({ left }) => typeof left !== 'undefined' ? left : 0}%;
 
   width: 12px;
