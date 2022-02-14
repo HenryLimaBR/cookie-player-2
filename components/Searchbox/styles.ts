@@ -15,7 +15,8 @@ export const SearchBoxWrapper = styled.div`
   width: 240px;
   height: 32px;
 
-  margin: 5px;
+  margin-top: 12px;
+  
   border-radius: 4px;
 
   background-color: #232528;
