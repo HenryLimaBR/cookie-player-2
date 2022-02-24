@@ -1,4 +1,4 @@
-export interface SearchAudioData {
+export interface AudioData {
   id: string
   title: string
   duration: number
@@ -7,8 +7,11 @@ export interface SearchAudioData {
   image: string
   url: string
   views: number
+  lastListenedAt: Date
+  addedAt: Date
 }
 
-export interface AudioData extends SearchAudioData {
-  lastListenedAt: Date
+export interface LastAudioState {
+  audio: AudioData
+  currentTime: number
 }

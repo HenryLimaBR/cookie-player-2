@@ -1,5 +1,5 @@
 import React from 'react'
-import type { SearchAudioData } from '../../@types/media'
+import type { AudioData } from '../../@types/media'
 
 import { ListWrapper, ListComponent } from './styles'
 
@@ -7,7 +7,7 @@ import { Item } from '../Item'
 
 type Props = {
   children?: React.ReactNode
-  results: SearchAudioData[]
+  results: AudioData[]
 }
 
 export const List: React.FC<Props> = (props) => {
