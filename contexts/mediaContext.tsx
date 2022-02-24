@@ -1,12 +1,10 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
-import type { SearchAudioData } from '../@types/media'
-
-import { getAudio } from '../services/client/api'
-import { playerContext } from './playerContext'
+import Head from 'next/head'
+import React, { createContext, useState } from 'react'
+import type { State } from '../@types/generic'
+import type { AudioData } from '../@types/media'
 
 type MediaContextProps = {
-  currentMedia: SearchAudioData
-  playCurrentMedia: (data: SearchAudioData) => Promise<void>
+  current: State<AudioData>
 }
 
 export const mediaContext = createContext({} as MediaContextProps)
@@ -16,39 +14,20 @@ type Props = {
 }
 
 export const MediaContextProvider: React.FC<Props> = (props) => {
-  const { player } = useContext(playerContext)
-  const [currentMedia, setCurrentMedia] = useState<SearchAudioData>({} as SearchAudioData)
-
-  const setMetaData = useCallback((data: SearchAudioData) => {
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new window.MediaMetadata({
-        title: data.title,
-        artwork: [
-          { src: `/_next/image?url=${data.image}&w=128&q=75`, sizes: '128x128', type: 'image/jpg' }
-        ]
-      })
-    }
-  }, [])
-
-  const playCurrentMedia = useCallback(async (data: SearchAudioData) => {
-    const audio = await getAudio(data.url)
-    try {
-      player.src = audio.url
-      player.play()
-    } catch (err) {
-      console.warn(err)
-    } finally {
-      setCurrentMedia(data)
-      setMetaData(data)
-    }
-  }, [player, setCurrentMedia, setMetaData])
+  const [current, setCurrent] = useState<AudioData>({} as AudioData)
 
   return (
-    <mediaContext.Provider value={{
-      currentMedia,
-      playCurrentMedia
-    }}>
-      {props.children}
+    <mediaContext.Provider value={
+      {
+        current: [current, setCurrent]
+      }
+    }>
+      <>
+        <Head>
+          {current.id && <title>{current.title}</title>}
+        </Head>
+        {props.children}
+      </>
     </mediaContext.Provider>
   )
 }
