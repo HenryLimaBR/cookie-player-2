@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import Image from 'next/image'
-import type { SearchAudioData } from '../../@types/media'
+import type { AudioData } from '../../@types/media'
 import { MdPlayArrow, MdPause } from 'react-icons/md'
 
 import { ItemWrapper } from './styles'
@@ -8,37 +8,47 @@ import { ItemWrapper } from './styles'
 import { mediaContext } from '../../contexts/mediaContext'
 import { SoundBars } from '../SoundBars'
 import { playerContext } from '../../contexts/playerContext'
+import { getAudio } from '../../services/client/api'
 
 type Props = {
   children?: React.ReactNode
-  data: SearchAudioData
+  data: AudioData
   index: number
 }
 
 export const Item: React.FC<Props> = ({ data, index }) => {
-  const { currentMedia, playCurrentMedia } = useContext(mediaContext)
   const { isPlaying, player } = useContext(playerContext)
+  const [current, setCurrent] = useContext(mediaContext).current
 
   const [hovering, setHovering] = useState(false)
+
+  const setPlay = (data: AudioData) => {
+    setCurrent(data)
+    getAudio(data.url)
+      .then((data) => {
+        player.src = data.url
+        player.play()
+      })
+  }
 
   return (
     <ItemWrapper
       className='img'
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      isActive={currentMedia.id === data.id && !isPlaying}
+      isActive={current.id === data.id && !isPlaying}
     >
       <div className='status-container'>
         {
           hovering
-            ? isPlaying && currentMedia.id === data.id
+            ? isPlaying && current.id === data.id
               ? (<MdPause size={24} onClick={() => player.pause()} />)
               : (<MdPlayArrow size={24} onClick={
-                () => currentMedia.id === data.id
+                () => current.id === data.id
                   ? player.play()
-                  : playCurrentMedia(data)
+                  : setPlay(data)
               } />)
-            : isPlaying && currentMedia.id === data.id
+            : isPlaying && current.id === data.id
               ? (<SoundBars size={20} />)
               : (<span>{index + 1}</span>)
         }
