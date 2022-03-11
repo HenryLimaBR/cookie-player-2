@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 
-import { PageWrapper } from '../styles/Pages'
-import { Loader } from '../components/Loader'
-import { List } from '../components/List'
-import { searchContext } from '../contexts/searchContext'
+import { PageWrapper } from '../../styles/Pages'
+import { Loader } from '../../components/Loader'
+import { List } from '../../components/List'
+import { searchContext } from '../../contexts/searchContext'
 
 type SearchPageProps = {
   children?: React.ReactNode
