@@ -11,7 +11,6 @@ type SearchContextProps = {
 export const searchContext = createContext({} as SearchContextProps)
 
 type Props = {
-  children: React.ReactNode
 }
 
 export const SearchContextProvider: React.FC<Props> = (props) => {

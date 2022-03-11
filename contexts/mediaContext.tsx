@@ -10,7 +10,6 @@ type MediaContextProps = {
 export const mediaContext = createContext({} as MediaContextProps)
 
 type Props = {
-  children: React.ReactNode
 }
 
 export const MediaContextProvider: React.FC<Props> = (props) => {

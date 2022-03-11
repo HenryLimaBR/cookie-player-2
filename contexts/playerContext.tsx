@@ -13,7 +13,6 @@ type PlayerContextProps = {
 export const playerContext = createContext({} as PlayerContextProps)
 
 type Props = {
-  children: React.ReactNode
 }
 
 export const PlayerContextProvider: React.FC<Props> = (props) => {
