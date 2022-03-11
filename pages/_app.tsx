@@ -8,6 +8,7 @@ import { MainLayout } from '../layouts/MainLayout'
 import { PlayerContextProvider } from '../contexts/playerContext'
 import { MediaContextProvider } from '../contexts/mediaContext'
 import { SearchContextProvider } from '../contexts/searchContext'
+import { LayoutContextProvider } from '../contexts/layoutContext'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -20,9 +21,11 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
         <MediaContextProvider>
           <SearchContextProvider>
 
-            <MainLayout>
-              <Component {...pageProps} />
-            </MainLayout>
+            <LayoutContextProvider>
+              <MainLayout>
+                <Component {...pageProps} />
+              </MainLayout>
+            </LayoutContextProvider>
 
           </SearchContextProvider>
         </MediaContextProvider>

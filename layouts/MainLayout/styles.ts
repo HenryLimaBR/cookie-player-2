@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 
-export const LayoutWrapper = styled.div`
+type LayoutWrapperProps = {
+  sidebar: boolean
+}
+
+export const LayoutWrapper = styled.div<LayoutWrapperProps>`
   display: grid;
   grid-template-columns: 250px 1fr;
   grid-template-rows: 1fr 72px;
-  grid-template-areas: 'Sidebar Main' 'Playerbar Playerbar';
+  grid-template-areas: '${({ sidebar }) => sidebar ? 'Sidebar' : 'Main'   } Main' 'Playerbar Playerbar';
 
   width: 100%;
   height: 100%;
