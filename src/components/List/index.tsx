@@ -6,7 +6,6 @@ import { ListWrapper, ListComponent } from './styles'
 import { Item } from '../Item'
 
 type Props = {
-  children?: React.ReactNode
   results: AudioData[]
 }
 

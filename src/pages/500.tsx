@@ -3,9 +3,7 @@ import { NextPage } from 'next'
 
 import { PageWrapper } from '../styles/Pages'
 
-type Custom500PageProps = {
-  children?: React.ReactNode
-}
+type Custom500PageProps = {}
 
 const Custom500: NextPage<Custom500PageProps> = (props) => {
   return (

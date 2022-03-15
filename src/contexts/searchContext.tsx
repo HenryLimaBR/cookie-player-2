@@ -10,8 +10,7 @@ type SearchContextProps = {
 
 export const searchContext = createContext({} as SearchContextProps)
 
-type Props = {
-}
+type Props = {}
 
 export const SearchContextProvider: React.FC<Props> = (props) => {
   const [searchLoading, setSearchLoading] = useState(true)

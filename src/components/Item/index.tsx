@@ -11,7 +11,6 @@ import { playerContext } from '../../contexts/playerContext'
 import { getAudio } from '../../services/client/api'
 
 type Props = {
-  children?: React.ReactNode
   data: AudioData
   index: number
 }

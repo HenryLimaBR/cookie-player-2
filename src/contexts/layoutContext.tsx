@@ -7,8 +7,7 @@ type LayoutContextProps = {
 
 export const layoutContext = createContext({} as LayoutContextProps)
 
-type Props = {
-}
+type Props = {}
 
 export const LayoutContextProvider: React.FC<Props> = (props) => {
   const [sidebar, setSidebar] = React.useState(true)

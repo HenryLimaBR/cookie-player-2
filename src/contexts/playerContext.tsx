@@ -12,8 +12,7 @@ type PlayerContextProps = {
 
 export const playerContext = createContext({} as PlayerContextProps)
 
-type Props = {
-}
+type Props = {}
 
 export const PlayerContextProvider: React.FC<Props> = (props) => {
   const [player, setPlayer] = useState<HTMLAudioElement>({} as HTMLAudioElement)

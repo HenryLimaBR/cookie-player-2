@@ -2,7 +2,6 @@ import React from 'react'
 import { StyledLoader } from './styles'
 
 type LoaderProps = {
-  children?: React.ReactNode
   size?: number
 }
 

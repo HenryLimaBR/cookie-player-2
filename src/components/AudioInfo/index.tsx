@@ -5,9 +5,7 @@ import { AudioInfoWrapper } from './styles'
 
 import { mediaContext } from '../../contexts/mediaContext'
 
-type Props = {
-  children?: React.ReactNode
-}
+type Props = {}
 
 export const AudioInfo: React.FC<Props> = (props) => {
   const [current] = useContext(mediaContext).current

@@ -6,9 +6,7 @@ import { playerContext } from '../../contexts/playerContext'
 import { Slider } from '../Slider'
 import { parseSeconds } from '../../utils/time'
 
-type Props = {
-  children?: React.ReactNode
-}
+type Props = {}
 
 export const AudioControls: React.FC<Props> = (props) => {
   const { duration, isPlaying, player } = useContext(playerContext)

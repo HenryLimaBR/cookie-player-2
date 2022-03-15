@@ -3,9 +3,7 @@ import { NextPage } from 'next'
 
 import { PageWrapper } from '../styles/Pages'
 
-type Custom404PageProps = {
-  children?: React.ReactNode
-}
+type Custom404PageProps = {}
 
 const Custom404: NextPage<Custom404PageProps> = (props) => {
   return (

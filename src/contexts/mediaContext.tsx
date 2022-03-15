@@ -9,8 +9,7 @@ type MediaContextProps = {
 
 export const mediaContext = createContext({} as MediaContextProps)
 
-type Props = {
-}
+type Props = {}
 
 export const MediaContextProvider: React.FC<Props> = (props) => {
   const [current, setCurrent] = useState<AudioData>({} as AudioData)

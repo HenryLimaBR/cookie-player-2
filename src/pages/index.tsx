@@ -3,8 +3,7 @@ import Head from 'next/head'
 
 import { PageWrapper } from '../styles/Pages'
 
-interface Props {
-}
+interface Props {}
 
 const Home: NextPage<Props> = (props) => {
   return (

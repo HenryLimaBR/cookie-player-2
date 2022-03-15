@@ -6,9 +6,7 @@ import { VolumeWrapper } from './styles'
 import { Slider } from '../Slider'
 import { playerContext } from '../../contexts/playerContext'
 
-type Props = {
-  children?: React.ReactNode
-}
+type Props = {}
 
 export const VolumeSlider: React.FC<Props> = (props) => {
   const [prevVolume, setPrevVolume] = useState(0)

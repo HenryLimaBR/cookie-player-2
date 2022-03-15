@@ -2,7 +2,6 @@ import React from 'react'
 import { SoundBarsWrapper } from './style'
 
 type Props = {
-  children?: React.ReactNode
   size?: number
 }
 

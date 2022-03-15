@@ -7,9 +7,7 @@ import { Loader } from '../../components/Loader'
 import { List } from '../../components/List'
 import { searchContext } from '../../contexts/searchContext'
 
-type SearchPageProps = {
-  children?: React.ReactNode
-}
+type SearchPageProps = {}
 
 const Search: NextPage<SearchPageProps> = (props) => {
   const { q } = useRouter().query

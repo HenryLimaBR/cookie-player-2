@@ -6,9 +6,7 @@ import { AudioControls } from '../AudioControls'
 import { VolumeSlider } from '../VolumeSlider'
 import { AudioInfo } from '../AudioInfo'
 
-type PlayerbarProps = {
-  children?: React.ReactNode
-}
+type PlayerbarProps = {}
 
 export const Playerbar: React.FC<PlayerbarProps> = (props) => {
   return (

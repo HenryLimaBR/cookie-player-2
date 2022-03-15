@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { SliderRange, SliderThumb, SliderTrack, SliderWrapper } from './styles'
 
 type Props = {
-  children?: React.ReactNode
   min?: number
   max?: number
   defaultValue?: number

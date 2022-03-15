@@ -4,9 +4,7 @@ import { MdSearch, MdClose } from 'react-icons/md'
 
 import { SearchBoxWrapper } from './styles'
 
-type Props = {
-  children?: React.ReactNode
-}
+type Props = {}
 
 export const Searchbox: React.FC<Props> = (props) => {
   const router = useRouter() 
